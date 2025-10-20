@@ -7,12 +7,30 @@ public class Room {
     private boolean isOccupied;
     private boolean isDirty;
     private LocalDateTime isAvailable;
+    public enum RoomType {
+        KING, DOUBLE
+    }
+
+    private RoomType roomType;
+
+    public Room(RoomType roomType) {
+        this.roomType = roomType;
+    }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
+    }
 
     public Room(int numberOfBeds, boolean isOccupied, boolean isDirty, LocalDateTime isAvailable) {
         this.numberOfBeds = numberOfBeds;
         this.isOccupied = isOccupied;
         this.isDirty = isDirty;
         this.isAvailable = isAvailable;
+        this.roomType = roomType;
     }
 
     public int getNumberOfBeds() {

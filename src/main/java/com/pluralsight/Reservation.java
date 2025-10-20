@@ -2,21 +2,12 @@ package com.pluralsight;
 
 public class Reservation {
     private String roomType;
-    private float price;
     private int numberOfNights;
     private boolean isWeekend;
 
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
 
     public float getPrice() {
-        price = roomType.equals("king") ? 139 : 124;
-        return price;
+        return (float) (roomType.equals("KING") ? 139 : 124);
     }
 
     public int getNumberOfNights() {
@@ -38,7 +29,7 @@ public class Reservation {
     public double getReservationTotal(){
         double total = getPrice() * numberOfNights;
         if (isWeekend) {
-            total = total * 0.10;
+            total = total * 1.10;
         }
 
         return total;
