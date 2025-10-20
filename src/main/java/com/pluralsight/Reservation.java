@@ -1,13 +1,18 @@
 package com.pluralsight;
 
 public class Reservation {
-    private String roomType;
+    private Room.RoomType roomType;
     private int numberOfNights;
     private boolean isWeekend;
 
+    public Reservation(Room.RoomType roomType, int numberOfNights, boolean isWeekend) {
+        this.roomType = roomType;
+        this.numberOfNights = numberOfNights;
+        this.isWeekend = isWeekend;
+    }
 
-    public float getPrice() {
-        return (float) (roomType.equals("KING") ? 139 : 124);
+    public double getPrice() {
+        return roomType == Room.RoomType.KING ? 139 : 124;
     }
 
     public int getNumberOfNights() {

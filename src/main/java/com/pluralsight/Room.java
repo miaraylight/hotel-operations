@@ -6,7 +6,7 @@ public class Room {
     private int numberOfBeds;
     private boolean isOccupied;
     private boolean isDirty;
-    private LocalDateTime isAvailable;
+    private boolean isAvailable;
     public enum RoomType {
         KING, DOUBLE
     }
@@ -25,7 +25,7 @@ public class Room {
         this.roomType = roomType;
     }
 
-    public Room(int numberOfBeds, boolean isOccupied, boolean isDirty, LocalDateTime isAvailable) {
+    public Room(int numberOfBeds, boolean isOccupied, boolean isDirty, boolean isAvailable, RoomType roomType) {
         this.numberOfBeds = numberOfBeds;
         this.isOccupied = isOccupied;
         this.isDirty = isDirty;
@@ -57,11 +57,22 @@ public class Room {
         isDirty = dirty;
     }
 
-    public LocalDateTime getIsAvailable() {
+    public boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setIsAvailable(LocalDateTime isAvailable) {
+    public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" + "\n " +
+                "numberOfBeds = " + numberOfBeds + "\n" +
+                " isOccupied = " + isOccupied + "\n" +
+                " isDirty = " + isDirty + "\n" +
+                " isAvailable = " + isAvailable + "\n" +
+                " roomType = " + roomType + "\n" +
+                '}';
     }
 }
