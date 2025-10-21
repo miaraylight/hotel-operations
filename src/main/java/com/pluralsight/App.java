@@ -20,10 +20,16 @@ public class App {
         System.out.println("Total pay: " + clerk.getTotalPay() + "$");
 
         Hotel myHotel = new Hotel("Majestic", 10, 20);
+        System.out.println(myHotel);
 
-        System.out.println(myHotel);
-        myHotel.bookRoom(3, true);
-        System.out.println(myHotel);
+        if (myHotel.bookRoom(3, true)) {
+            System.out.println(myHotel);
+            System.out.println("Successfully booked");
+        } else {
+            System.out.println(myHotel);
+            System.out.println("Not available");
+        }
+
 
     }
 }
