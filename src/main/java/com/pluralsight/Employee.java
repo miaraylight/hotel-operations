@@ -68,7 +68,7 @@ public class Employee {
         startTime = punchInTime;
     }
 
-    public  void  punchOut (LocalTime punchOutTime) {
+    public void  punchOut (LocalTime punchOutTime) {
         endTime = punchOutTime;
 
         Duration duration = Duration.between(startTime, endTime);
@@ -81,6 +81,27 @@ public class Employee {
 
         hoursWorked += workedHoursToday;
         System.out.println(hoursWorked);
+
+    }
+
+    public void punchTimeCard (LocalTime punchTime) {
+        if (startTime == null) {
+            startTime = punchTime;
+        } else {
+            endTime = punchTime;
+            Duration duration = Duration.between(startTime, endTime);
+
+            double hoursWorkedToday = duration.toMinutes() / 60.0;
+            hoursWorked+=hoursWorkedToday;
+
+            System.out.println("Today:" + hoursWorkedToday + " Week: " + hoursWorked);
+
+            startTime = null;
+            endTime = null;
+            System.out.println(startTime + " " + endTime);
+        }
+
+
 
     }
 }
