@@ -1,7 +1,7 @@
 package com.pluralsight;
 
 public class Reservation {
-    private Room.RoomType roomType;
+    private final Room.RoomType roomType;
     private int numberOfNights;
     private boolean isWeekend;
 
@@ -31,7 +31,7 @@ public class Reservation {
         isWeekend = weekend;
     }
 
-    public double getReservationTotal(){
+    public double getReservationTotal() {
         double total = getPrice() * numberOfNights;
         if (isWeekend) {
             total = total * 1.10;
@@ -39,6 +39,5 @@ public class Reservation {
 
         return total;
     }
-
 
 }

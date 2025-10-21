@@ -2,20 +2,17 @@ package com.pluralsight;
 
 import java.time.Duration;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 public class Employee {
+    final int REGULAR_HOURS = 40;
+    final double OVERTIME_PAY_RATE = 1.5;
+    private final double payRate;
+    LocalTime startTime = null;
+    LocalTime endTime = null;
     private int employeeId;
     private String name;
     private String department;
-    private double payRate;
     private double hoursWorked;
-
-    final int REGULAR_HOURS = 40;
-    final double OVERTIME_PAY_RATE = 1.5;
-    LocalTime startTime;
-    LocalTime endTime;
 
     public Employee(int employeeId, String name, String department, double payRate) {
         this.employeeId = employeeId;
@@ -64,44 +61,23 @@ public class Employee {
         return 0;
     }
 
-    public void punchIn (LocalTime punchInTime) {
-        startTime = punchInTime;
-    }
-
-    public void  punchOut (LocalTime punchOutTime) {
-        endTime = punchOutTime;
-
-        Duration duration = Duration.between(startTime, endTime);
-
-        System.out.println(duration);
-
-        double workedHoursToday = duration.toMinutes() / 60.0;
-
-        System.out.println(workedHoursToday);
-
-        hoursWorked += workedHoursToday;
-        System.out.println(hoursWorked);
-
-    }
-
-    public void punchTimeCard (LocalTime punchTime) {
+    public void punchTimeCard(LocalTime punchTime) {
         if (startTime == null) {
             startTime = punchTime;
+            System.out.println("Punched in at: " + startTime);
         } else {
             endTime = punchTime;
+            System.out.println("Punched out at: " + endTime);
+
             Duration duration = Duration.between(startTime, endTime);
 
             double hoursWorkedToday = duration.toMinutes() / 60.0;
-            hoursWorked+=hoursWorkedToday;
+            hoursWorked += hoursWorkedToday;
 
             System.out.println("Today:" + hoursWorkedToday + " Week: " + hoursWorked);
 
             startTime = null;
             endTime = null;
-            System.out.println(startTime + " " + endTime);
         }
-
-
-
     }
 }

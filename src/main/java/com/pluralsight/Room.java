@@ -1,27 +1,12 @@
 package com.pluralsight;
 
-import java.time.LocalDateTime;
-
 public class Room {
     private int numberOfBeds;
     private boolean isOccupied;
     private boolean isDirty;
-    private boolean isAvailable;
-    public enum RoomType {
-        KING, DOUBLE
-    }
-
     private RoomType roomType;
 
     public Room(RoomType roomType) {
-        this.roomType = roomType;
-    }
-
-    public RoomType getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
     }
 
@@ -29,7 +14,18 @@ public class Room {
         this.numberOfBeds = numberOfBeds;
         this.isOccupied = isOccupied;
         this.isDirty = isDirty;
-        this.isAvailable = isAvailable;
+        this.roomType = roomType;
+    }
+
+    public boolean isAvailable() {
+        return !isDirty && !isOccupied;
+    }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
     }
 
@@ -57,26 +53,24 @@ public class Room {
         isDirty = dirty;
     }
 
-    public boolean getIsAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
     public void checkIn() {
+        if (!isAvailable()) {
+            throw new IllegalStateException("Room is not available");
+        }
         isOccupied = true;
         isDirty = true;
     }
 
     public void checkout() {
+        if (isAvailable()) {
+            throw new IllegalStateException("Room is available");
+        }
         cleanRoom();
         isOccupied = false;
     }
 
     public void cleanRoom() {
-        isDirty= false;
+        isDirty = false;
     }
 
     @Override
@@ -85,8 +79,12 @@ public class Room {
                 "numberOfBeds = " + numberOfBeds + "\n" +
                 " isOccupied = " + isOccupied + "\n" +
                 " isDirty = " + isDirty + "\n" +
-                " isAvailable = " + isAvailable + "\n" +
+                " isAvailable = " + isAvailable() + "\n" +
                 " roomType = " + roomType + "\n" +
                 '}';
+    }
+
+    public enum RoomType {
+        KING, DOUBLE
     }
 }
