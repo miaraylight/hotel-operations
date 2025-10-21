@@ -19,5 +19,11 @@ public class App {
 
         System.out.println("Total pay: " + clerk.getTotalPay() + "$");
 
+        Hotel myHotel = new Hotel("Majestic", 10, 20);
+
+        System.out.println(myHotel);
+        myHotel.bookRoom(3, true);
+        System.out.println(myHotel);
+
     }
 }

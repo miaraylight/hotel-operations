@@ -2,10 +2,10 @@ package com.pluralsight;
 
 public class Hotel {
     public String name;
-    public int numberOfSuites;
-    public int numberOfRooms;
-    public int bookedSuites;
-    public int bookedBasicRooms;
+    private int numberOfSuites;
+    private int numberOfRooms;
+    private int bookedSuites;
+    private int bookedBasicRooms;
 
     public Hotel(String name, int numberOfSuites, int numberOfRooms) {
         this.name = name;
@@ -23,24 +23,44 @@ public class Hotel {
         this.bookedBasicRooms = bookedBasicRooms;
     }
 
+
+
     public boolean bookRoom(int numberOfRooms, boolean isSuite) {
         if (isSuite) {
-            bookedSuites += numberOfRooms;
-            this.numberOfSuites -= numberOfRooms;
-            return true;
+            if (getAvailableSuites() > numberOfRooms) {
+                bookedSuites += numberOfRooms;
+                this.numberOfSuites -= numberOfRooms;
+                return true;
+            }else {
+                return false;
+            }
         } else {
-            bookedBasicRooms += numberOfRooms;
-            this.numberOfRooms -= numberOfRooms;
-            return true;
+            if (getAvailableRooms() > numberOfRooms) {
+                bookedBasicRooms += numberOfRooms;
+                this.numberOfRooms -= numberOfRooms;
+                return true;
+            }else {
+                return false;
+            }
         }
-
     }
 
-//    private int getAvailableSuites() {
-//
-//    }
-//
-//    private int getAvailableSuites() {
-//
-//    }
+    private int getAvailableSuites() {
+        return numberOfSuites - bookedSuites;
+    }
+
+    private int getAvailableRooms() {
+        return numberOfRooms - bookedBasicRooms;
+    }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "name='" + name + '\'' +
+                ", numberOfSuites=" + numberOfSuites +
+                ", numberOfRooms=" + numberOfRooms +
+                ", bookedSuites=" + bookedSuites +
+                ", bookedBasicRooms=" + bookedBasicRooms +
+                '}';
+    }
 }
