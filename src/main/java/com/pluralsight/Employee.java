@@ -7,6 +7,9 @@ public class Employee {
     private double payRate;
     private double hoursWorked;
 
+    final int REGULAR_HOURS = 40;
+    final double OVERTIME_PAY_RATE = 1.5;
+
     public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
         this.employeeId = employeeId;
         this.name = name;
@@ -40,7 +43,7 @@ public class Employee {
     }
 
     public double getTotalPay() {
-        return (getRegularHours() * payRate) + (getOvertimeHours() * 1.15);
+        return (getRegularHours() * payRate) + (getOvertimeHours() * OVERTIME_PAY_RATE);
     }
 
     private double getRegularHours() {
@@ -48,8 +51,9 @@ public class Employee {
     }
 
     private double getOvertimeHours() {
-        if (hoursWorked > 40) {
-            return hoursWorked - 40;
+
+        if (hoursWorked > REGULAR_HOURS) {
+            return hoursWorked - REGULAR_HOURS;
         }
         return 0;
     }
