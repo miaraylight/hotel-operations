@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 public class Employee {
     final int REGULAR_HOURS = 40;
-    final double OVERTIME_PAY_RATE = 1.5;
+    final double OVERTIME_PAY_RATE_INCREASE = 1.5;
     private final double payRate;
     LocalTime startTime = null;
     LocalTime endTime = null;
@@ -46,11 +46,15 @@ public class Employee {
     }
 
     public double getTotalPay() {
-        return (getRegularHours() * payRate) + (getOvertimeHours() * OVERTIME_PAY_RATE);
+        return (getRegularHours() * payRate) + (getOvertimeHours() * (payRate * OVERTIME_PAY_RATE_INCREASE));
     }
 
     private double getRegularHours() {
-        return hoursWorked;
+        if (hoursWorked < REGULAR_HOURS) {
+            return hoursWorked;
+        }else {
+            return REGULAR_HOURS;
+        }
     }
 
     private double getOvertimeHours() {

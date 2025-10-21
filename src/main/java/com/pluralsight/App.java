@@ -12,14 +12,12 @@ public class App {
         System.out.println(reservation.getReservationTotal());
 
         Employee clerk = new Employee(1, "Sponge Bob", "Front Desk", 10);
-        System.out.println(clerk.getTotalPay());
 
         clerk.punchTimeCard(LocalTime.now());
-
-        Duration duration = Duration.ofHours(8);
-
+        Duration duration = Duration.ofHours(10);
         clerk.punchTimeCard(LocalTime.now().plus(duration));
 
+        System.out.println("Total pay: " + clerk.getTotalPay() + "$");
 
     }
 }
