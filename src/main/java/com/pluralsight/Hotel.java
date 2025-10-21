@@ -29,7 +29,6 @@ public class Hotel {
         if (isSuite) {
             if (getAvailableSuites() >= numberOfRooms) {
                 bookedSuites += numberOfRooms;
-                this.numberOfSuites -= numberOfRooms;
                 return true;
             }else {
                 return false;
@@ -37,7 +36,6 @@ public class Hotel {
         } else {
             if (getAvailableRooms() >= numberOfRooms) {
                 bookedBasicRooms += numberOfRooms;
-                this.numberOfRooms -= numberOfRooms;
                 return true;
             }else {
                 return false;
