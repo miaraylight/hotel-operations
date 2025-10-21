@@ -65,6 +65,20 @@ public class Room {
         this.isAvailable = isAvailable;
     }
 
+    public void checkIn() {
+        isOccupied = true;
+        isDirty = true;
+    }
+
+    public void checkout() {
+        cleanRoom();
+        isOccupied = false;
+    }
+
+    public void cleanRoom() {
+        isDirty= false;
+    }
+
     @Override
     public String toString() {
         return "Room{" + "\n " +
