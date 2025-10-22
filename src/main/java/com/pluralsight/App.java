@@ -1,6 +1,5 @@
 package com.pluralsight;
 
-import java.time.Duration;
 import java.time.LocalTime;
 
 public class App {
@@ -14,8 +13,7 @@ public class App {
         Employee clerk = new Employee(1, "Sponge Bob", "Front Desk", 10);
 
         clerk.punchTimeCard(LocalTime.now());
-        Duration duration = Duration.ofHours(10);
-        clerk.punchTimeCard(LocalTime.now().plus(duration));
+        clerk.punchTimeCard(LocalTime.now().plusHours(10));
 
         System.out.println("Total pay: " + clerk.getTotalPay() + "$");
 

@@ -32,6 +32,10 @@ public class Reservation {
     }
 
     public double getReservationTotal() {
+        if (numberOfNights <= 0) {
+            throw new IllegalArgumentException("Number of nights must be greater than zero.");
+        }
+
         double total = getPrice() * numberOfNights;
         if (isWeekend) {
             total = total * 1.10;
