@@ -2,6 +2,9 @@ package com.pluralsight;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+import java.time.LocalTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class HotelTest {
@@ -51,5 +54,35 @@ class HotelTest {
         IllegalStateException exception = assertThrows(IllegalStateException.class, myRoom::cleanRoom);
 
         assertEquals("Room is occupied", exception.getMessage());
+    }
+
+    @Test
+    void punchTimeCard_when_first_called_should_update_start_time() {
+        Employee clerk = new Employee(1, "Sponge Bob", "Front Desk", 10);
+
+        LocalTime now = LocalTime.now();
+        clerk.punchTimeCard(now);
+
+        LocalTime result = clerk.startTime;
+
+        assertEquals(now, result);
+
+    }
+
+    @Test
+    void punchTimeCard_when_second_called_should_update_end_time() {
+        Employee clerk = new Employee(1, "Sponge Bob", "Front Desk", 10);
+
+        LocalTime first = LocalTime.now();
+        clerk.punchTimeCard(first);
+
+        Duration duration = Duration.ofHours(10);
+        LocalTime second = first.plus(duration);
+        clerk.punchTimeCard(second);
+
+        LocalTime result = clerk.getEndTime();
+
+        assertEquals(second, result);
+
     }
 }

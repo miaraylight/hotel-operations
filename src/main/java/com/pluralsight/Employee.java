@@ -45,6 +45,14 @@ public class Employee {
         this.department = department;
     }
 
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
     public double getTotalPay() {
         return (getRegularHours() * payRate) + (getOvertimeHours() * (payRate * OVERTIME_PAY_RATE_INCREASE));
     }
@@ -70,7 +78,7 @@ public class Employee {
             startTime = punchTime;
             System.out.println("Punched in at: " + startTime);
         } else {
-            endTime = punchTime;
+            this.endTime = punchTime;
             System.out.println("Punched out at: " + endTime);
 
             Duration duration = Duration.between(startTime, endTime);
@@ -81,7 +89,7 @@ public class Employee {
             System.out.println("Today:" + hoursWorkedToday + " Week: " + hoursWorked);
 
             startTime = null;
-            endTime = null;
+//            endTime = null; // not sure yet
         }
     }
 }
