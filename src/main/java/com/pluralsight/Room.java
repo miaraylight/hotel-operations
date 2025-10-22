@@ -54,6 +54,9 @@ public class Room {
     }
 
     public void checkIn() {
+//        if (isOccupied) {
+//            throw  new IllegalStateException("Room is occupied");
+//        }
         if (!isAvailable()) {
             throw new IllegalStateException("Room is not available");
         }
@@ -70,6 +73,9 @@ public class Room {
     }
 
     public void cleanRoom() {
+        if (isOccupied) {
+            throw new IllegalStateException("Room is occupied");
+        }
         isDirty = false;
     }
 
